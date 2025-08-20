@@ -3,18 +3,25 @@
 @tailwind utilities;
 
 /* Dark theme base styles */
-body {
+html, body {
   background-color: #000000;
   color: #ffffff;
+  overflow-x: hidden;
+}
+
+#root {
+  overflow-x: hidden;
 }
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
   background: #1f1f1f;
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -24,6 +31,24 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #606060;
+}
+
+/* Custom scrollbar for filter sections */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #4b5563;
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #6b7280;
 }
 
 /* Line clamping utility */
@@ -48,12 +73,38 @@ body {
   overflow: hidden;
 }
 
-/* Smooth transitions for all elements */
-* {
-  transition: all 0.2s ease-in-out;
+/* Remove global transitions for better performance */
+
+/* Custom animations for home page */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* Custom gradient animations */
+@keyframes scroll {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
 @keyframes gradient-x {
   0%, 100% {
     background-position: 0% 50%;
@@ -61,6 +112,18 @@ body {
   50% {
     background-position: 100% 50%;
   }
+}
+
+.animate-fade-in {
+  animation: fade-in 1s ease-out;
+}
+
+.animate-scroll {
+  animation: scroll 1.5s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
 }
 
 .animate-gradient-x {
@@ -75,8 +138,27 @@ body {
   }
 }
 
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
 .animate-spin {
   animation: spin 1s linear infinite;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 3s linear infinite;
 }
 
 /* Hover effects */
@@ -161,4 +243,60 @@ body {
 
 .shadow-lg {
   @apply shadow-2xl shadow-black/40;
+}
+
+/* Toast animations */
+@keyframes slide-in-right {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes progress {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.3s ease-out;
+}
+
+.animate-progress {
+  animation: progress linear forwards;
+}
+
+.animate-bounce {
+  animation: bounce 1s ease-in-out infinite;
+}
+
+/* Onboarding pulse animation */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s ease-in-out infinite;
 }
