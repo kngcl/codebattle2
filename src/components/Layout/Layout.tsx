@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
-import Navbar from './Navbar';
+import EnhancedNavbar from './EnhancedNavbar';
 import Footer from './Footer';
 import { OnboardingOverlay, WelcomeModal } from '../Onboarding';
 import { useOnboarding } from '../../context/OnboardingContext';
@@ -33,8 +33,8 @@ const Layout: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-black flex flex-col overflow-x-hidden">
-      <Navbar />
-      <main className="flex-1 overflow-x-hidden">
+      <EnhancedNavbar />
+      <main className="flex-1 overflow-x-hidden pt-16">
         <Outlet />
       </main>
       <Footer />
